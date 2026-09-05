@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>X-91 Flight-Control Approval Data Pack</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">X-91 Flight-Control Approval Data Pack</h1>
+</header>
+<h1 id="x-91-flight-control-approval-data-pack---candidate-v04">X-91
+flight-control approval data pack - candidate v0.4</h1>
+<h2 id="approval-statement">Approval statement</h2>
+<p><strong>Disposition: READY FOR QUALIFIED REVIEW, NOT APPROVED FOR
+FLIGHT.</strong> This package defines the evidence, configuration and
+pass/fail gates needed for a qualified flight-controls engineer and test
+pilot to issue a restricted initial flight release. It does not grant
+regulatory authorization, airworthiness, fabrication release, or
+permission to operate.</p>
+<p>Scope is a civilian, non-weaponized demonstrator. Payload release,
+targeting, person tracking, pursuit, combat logic and autonomous mission
+execution are excluded. Initial approval is limited to MANUAL, FBWA and
+RTL under direct visual-line-of-sight control.</p>
+<h2 id="controlled-configuration">Controlled configuration</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Approval baseline</th>
+<th>Configuration control</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Flight controller</td>
+<td>Holybro Pixhawk 6X</td>
+<td>Record serial number, hardware revision and installation drawing.
+Triple IMUs and redundant barometers do not replace installation
+testing.</td>
+</tr>
+<tr class="even">
+<td>Flight software</td>
+<td>ArduPlane stable release</td>
+<td>Reviewer freezes exact semantic version, git hash, bootloader, board
+target and signed parameter export. No automatic upgrades.</td>
+</tr>
+<tr class="odd">
+<td>Navigation</td>
+<td>External GNSS/compass, barometer and calibrated digital
+airspeed</td>
+<td>Record models, firmware, orientation, bus and calibration reports.
+Internal compass is not the primary heading source.</td>
+</tr>
+<tr class="even">
+<td>Pilot command</td>
+<td>Independent RC link with physical mode switch and immediate MANUAL
+selection</td>
+<td>Demonstrate command latency, range, receiver failsafe and override
+with telemetry/GCS absent.</td>
+</tr>
+<tr class="odd">
+<td>Power</td>
+<td>Two independent regulated avionics inputs; propulsion BECs
+electrically excluded</td>
+<td>Brownout, single-feed loss and ground-loop tests required. Servo
+rail sized from measured simultaneous actuator current.</td>
+</tr>
+<tr class="even">
+<td>Actuation</td>
+<td>Two KST X10 V8.0 elevon servos at regulated 7.4 V</td>
+<td>Independent output channels, mechanical stops +/-25 deg, command
+clipping +/-22 deg, measured direction and travel.</td>
+</tr>
+<tr class="odd">
+<td>Propulsion</td>
+<td>Two independently monitored EDF branches</td>
+<td>Common throttle command; branch current/RPM comparison; any
+sustained mismatch &gt;10% commands both branches idle and alerts
+pilot.</td>
+</tr>
+<tr class="even">
+<td>Logging</td>
+<td>Onboard high-rate log plus independent test recorder</td>
+<td>Parameters, firmware identity, IMU, EKF, RC, servo output, airspeed,
+GPS, power, current, RPM and failsafe events retained for every
+run.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="approval-envelope">Approval envelope</h2>
+<ul>
+<li>Maximum gross mass: 4.50 kg; CG: 24% MAC nominal, allowable initial
+range 23-25% MAC after physical weighing.</li>
+<li>Initial airspeed envelope: 1.3 times measured stall speed through 25
+m/s. Expansion above 25 m/s requires correlated GVT/flutter clearance;
+never exceed the lesser of the analyst-approved limit or 45 m/s.</li>
+<li>Bank command: +/-30 deg; pitch command: +15/-10 deg; pitch rate
+&lt;=45 deg/s; roll rate &lt;=90 deg/s.</li>
+<li>Wind: &lt;=5 m/s steady, &lt;=2 m/s gust spread; dry daylight;
+prepared field; no flight over people or occupied structures.</li>
+<li>Initial altitude: local rule-compliant, with minimum recovery height
+selected by test pilot and maximum geofence altitude/radius set for the
+site.</li>
+<li>Maximum flight duration: value derived from instrumented
+propulsion/endurance test with &gt;=30% battery reserve on landing.</li>
+</ul>
+<h2 id="requirements-and-verification">Requirements and
+verification</h2>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Requirement</th>
+<th>Verification</th>
+<th>Pass evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FC-001</td>
+<td>Exact hardware, firmware and parameters are uniquely
+identified.</td>
+<td>Inspection</td>
+<td>Signed configuration index; SHA-256 hashes; readback matches
+controlled files.</td>
+</tr>
+<tr class="even">
+<td>FC-002</td>
+<td>Manual control remains available without GNSS, airspeed, telemetry
+or GCS.</td>
+<td>HITL/ground</td>
+<td>Correct surface/throttle response in every injected-loss case.</td>
+</tr>
+<tr class="odd">
+<td>FC-003</td>
+<td>Any single avionics power-feed loss causes no reboot or actuator
+transient.</td>
+<td>Bench</td>
+<td>Voltage/current traces; no reset; no output step &gt;2 deg.</td>
+</tr>
+<tr class="even">
+<td>FC-004</td>
+<td>Sensor installation is free of unacceptable vibration, magnetic and
+pressure errors.</td>
+<td>Ground/taxi</td>
+<td>IMU clipping zero; compass interference within reviewer limit;
+airspeed zero and scale checks pass.</td>
+</tr>
+<tr class="odd">
+<td>FC-005</td>
+<td>Command limits prevent structural/envelope exceedance in FBWA.</td>
+<td>SITL/HITL</td>
+<td>Monte Carlo cases stay within bank, pitch, rate, speed and load
+limits.</td>
+</tr>
+<tr class="even">
+<td>FC-006</td>
+<td>RC loss produces the approved RTL sequence and reacquisition
+restores pilot authority predictably.</td>
+<td>SITL/HITL/range</td>
+<td>20/20 repetitions pass with recorded transition times.</td>
+</tr>
+<tr class="odd">
+<td>FC-007</td>
+<td>Geofence breach produces the approved return behavior without
+leaving the containment volume.</td>
+<td>SITL/HITL</td>
+<td>20/20 boundary cases pass, including wind and GNSS error.</td>
+</tr>
+<tr class="even">
+<td>FC-008</td>
+<td>One EDF degradation/failure does not produce unrecoverable
+yaw/roll.</td>
+<td>6-DOF/HITL/tethered ground</td>
+<td>Both-throttle cut triggers &lt;=0.25 s after &gt;10% verified
+mismatch; MANUAL remains available.</td>
+</tr>
+<tr class="odd">
+<td>FC-009</td>
+<td>Servo authority, speed and thermal margin cover the approved
+envelope.</td>
+<td>Bench/load</td>
+<td>&gt;=2.0 torque margin; full combined travel at minimum bus voltage;
+temperatures within limits.</td>
+</tr>
+<tr class="even">
+<td>FC-010</td>
+<td>State estimation degrades safely under sensor faults.</td>
+<td>SITL/HITL</td>
+<td>Bias, freeze, dropout and noise cases produce annunciation and
+approved fallback; no hidden AUTO continuation.</td>
+</tr>
+<tr class="odd">
+<td>FC-011</td>
+<td>All safety-critical events and commands are reconstructable.</td>
+<td>Log review</td>
+<td>Independent time correlation &lt;=20 ms; no required field missing;
+checksum retained.</td>
+</tr>
+<tr class="even">
+<td>FC-012</td>
+<td>Initial flights cannot enter autonomous mission execution.</td>
+<td>Inspection/test</td>
+<td>AUTO and GUIDED mission initiation inhibited in the controlled
+parameter set; bench attempt fails safely.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="model-acceptance-before-control-law-approval">Model acceptance
+before control-law approval</h2>
+<p>The current 6-DOF derivatives are assumptions and cannot support gain
+approval. Replace them with:</p>
+<ol type="1">
+<li>Measured mass, CG and full inertia tensor for minimum and maximum
+flight mass.</li>
+<li>Aerodynamic coefficient tables versus angle of attack, sideslip,
+control deflection and propulsion state, including post-stall
+uncertainty bounds.</li>
+<li>Propulsion thrust and lag versus command, airspeed and battery
+voltage, including left/right mismatch.</li>
+<li>Servo position, rate limit, deadband, backlash, bus-voltage
+dependence and load response.</li>
+<li>Correlated structural modes from GVT, with flight-control
+sampling/filter frequencies checked against elastic modes.</li>
+</ol>
+<p>The nonlinear model passes only if trim residuals are within 2%
+weight and 0.5 deg control, predicted static margin agrees with
+glide/ground evidence within 2% MAC, and measured doublet responses fall
+inside the model's 95% uncertainty bounds. Control gains cannot be
+finalized before correlation.</p>
+<h2 id="sitl-and-hitl-campaign">SITL and HITL campaign</h2>
+<p>Use the frozen ArduPlane binary and controlled parameter file. Run
+nominal cases and at least 200 Monte Carlo trials per safety-critical
+scenario across mass, CG, aerodynamic uncertainty, wind, sensor bias,
+battery voltage, servo rate and propulsion mismatch.</p>
+<p>Scenarios: takeoff/launch transient; pilot doublets; stall approach
+and recovery; minimum/maximum CG; 5 m/s crosswind; gusts; RC
+loss/recovery; GCS loss; GNSS dropout/jump; compass bias; airspeed
+freeze/blockage/bias; barometer drift; one power-feed loss; one servo
+slow/jammed at neutral/offset; one EDF 10/25/50/100% loss; fence breach
+at every boundary; RTL from minimum energy; CPU load and logging
+saturation.</p>
+<p>Pass criteria: no departure, sustained oscillation, command reversal,
+geofence escape, reboot or structural-envelope exceedance; pilot
+override always works; required annunciation occurs; terminal states are
+controlled landing/approved loiter or manual recovery. Every failure is
+dispositioned before approval.</p>
+<h2 id="ground-and-restrained-tests">Ground and restrained tests</h2>
+<ol type="1">
+<li>Configuration audit and independent control-direction check.</li>
+<li>Avionics power interruption, brownout and servo-load test while
+logging.</li>
+<li>Vibration survey with each EDF alone and together through the full
+RPM range; inspect notch/filter separation from structural modes.</li>
+<li>Pitot leak, zero, scale and blockage tests; compass interference
+test at every throttle setting.</li>
+<li>RC/GCS range and antenna-orientation tests; verify failsafe timing
+and manual reacquisition.</li>
+<li>Restrained asymmetric-thrust detection using controlled RPM/current
+reduction on one branch.</li>
+<li>Hardware-in-loop test with the exact installed controller, receiver,
+sensors and servo loads.</li>
+</ol>
+<h2 id="restricted-flight-test-cards">Restricted flight-test cards</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Card</th>
+<th>Objective</th>
+<th>Entry gate</th>
+<th>Maximum task</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FT-01</td>
+<td>Unpowered glide trim</td>
+<td>Structural proof, CG and manual control signed</td>
+<td>Straight glide, small pitch corrections, no automation.</td>
+</tr>
+<tr class="even">
+<td>FT-02</td>
+<td>Powered straight flight</td>
+<td>Propulsion, vibration and FT-01 pass</td>
+<td>MANUAL only, &lt;=18 m/s, shallow turns, immediate landing.</td>
+</tr>
+<tr class="odd">
+<td>FT-03</td>
+<td>Stabilized-mode evaluation</td>
+<td>Correlated manual response and HITL pass</td>
+<td>FBWA, 5 deg pitch and 15 deg bank steps.</td>
+</tr>
+<tr class="even">
+<td>FT-04</td>
+<td>Envelope identification</td>
+<td>FT-03 stable and model updated</td>
+<td>Small doublets, stall approach at safe height, &lt;=25 m/s.</td>
+</tr>
+<tr class="odd">
+<td>FT-05</td>
+<td>RTL demonstration</td>
+<td>RC-loss/geofence HITL 20/20 pass</td>
+<td>Pilot-commanded RTL with immediate MANUAL takeover available.</td>
+</tr>
+</tbody>
+</table>
+<p>Each card requires test pilot, flight-test engineer and safety
+observer; weather/site go-no-go; abort plan; telemetry and onboard
+logging; post-flight inspection; data review and written authorization
+before the next card.</p>
+<h2 id="approval-signatures">Approval signatures</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Required finding</th>
+<th>Name / credential / signature / date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Flight-controls engineer</td>
+<td>Requirements, model correlation, gain/limit and V&amp;V evidence
+acceptable</td>
+<td>______________________________</td>
+</tr>
+<tr class="even">
+<td>Aeroelastic/structures reviewer</td>
+<td>Approved control envelope is inside structural and flutter
+clearance</td>
+<td>______________________________</td>
+</tr>
+<tr class="odd">
+<td>Electrical/propulsion reviewer</td>
+<td>Power, actuator and asymmetric-thrust protections acceptable</td>
+<td>______________________________</td>
+</tr>
+<tr class="even">
+<td>Flight-test pilot</td>
+<td>Test cards, abort criteria, handling risks and site limits
+accepted</td>
+<td>______________________________</td>
+</tr>
+<tr class="odd">
+<td>Configuration manager</td>
+<td>Hardware/software/parameter baseline and evidence hashes
+complete</td>
+<td>______________________________</td>
+</tr>
+</tbody>
+</table>
+<p>Approval, if granted, is limited to the identified airframe serial
+number, mass/CG range, firmware hash, parameter hash, hardware
+configuration, site and envelope. Any change affecting geometry, mass
+distribution, servo linkage, propulsion, sensors, flight software or
+parameters suspends approval pending impact review.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>ArduPilot Pixhawk 6X: <a
+href="https://ardupilot.org/plane/docs/common-holybro-pixhawk6X.html">https://ardupilot.org/plane/docs/common-holybro-pixhawk6X.html</a></li>
+<li>ArduPilot SITL: <a
+href="https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html">https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html</a></li>
+<li>ArduPilot airspeed sensor guidance: <a
+href="https://ardupilot.org/plane/docs/airspeed.html">https://ardupilot.org/plane/docs/airspeed.html</a></li>
+<li>ArduPilot advanced failsafe configuration: <a
+href="https://ardupilot.org/plane/docs/advanced-failsafe-configuration.html">https://ardupilot.org/plane/docs/advanced-failsafe-configuration.html</a></li>
+<li>ArduPilot parameter reference: <a
+href="https://ardupilot.org/plane/docs/parameters.html">https://ardupilot.org/plane/docs/parameters.html</a></li>
+<li>FAA educational/recreational operations: <a
+href="https://www.faa.gov/uas/educational_users">https://www.faa.gov/uas/educational_users</a></li>
+<li>FAA Part 107 waivers: <a
+href="https://www.faa.gov/uas/commercial_operators/part_107_waivers">https://www.faa.gov/uas/commercial_operators/part_107_waivers</a></li>
+</ul>
+</body>
+</html>

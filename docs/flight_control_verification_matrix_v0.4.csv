@@ -1,0 +1,13 @@
+requirement_id,requirement,method,status,evidence_file,reviewer,review_date,notes
+FC-001,Unique hardware firmware and parameter identity,Inspection,OPEN,,,,
+FC-002,Manual control independent of navigation and telemetry,HITL and ground,OPEN,,,,
+FC-003,Single avionics power feed loss tolerated,Bench,OPEN,,,,
+FC-004,Sensor installation interference acceptable,Ground and taxi,OPEN,,,,
+FC-005,FBWA envelope protection,SITL and HITL,OPEN,,,,
+FC-006,RC-loss and recovery behavior,SITL HITL and range,OPEN,,,,
+FC-007,Geofence containment,SITL and HITL,OPEN,,,,
+FC-008,Asymmetric-thrust response,6DOF HITL and restrained ground,OPEN,,,,
+FC-009,Servo authority speed and thermal margin,Bench load,OPEN,,,,
+FC-010,Safe state-estimation degradation,SITL and HITL,OPEN,,,,
+FC-011,Safety event reconstruction,Log review,OPEN,,,,
+FC-012,Autonomous mission execution inhibited,Inspection and bench,OPEN,,,,

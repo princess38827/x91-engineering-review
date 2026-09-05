@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="X-91 civilian demonstrator engineering review portal">
+  <title>X-91 Engineering Review Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav><span class="mark">X-91</span><span class="nav-status">Approval candidate v0.4</span></nav>
+    <div class="hero-copy">
+      <p class="eyebrow">Civilian / non-weaponized flight demonstrator</p>
+      <h1>Engineering evidence,<br>without ambiguity.</h1>
+      <p class="lede">A controlled review portal for structural, propulsion, stability and flight-control evidence. This project is not approved for fabrication or flight.</p>
+      <div class="actions">
+        <a class="primary" href="flight-control.html">Flight-control data pack</a>
+        <a class="secondary" href="engineering-spec.html">Engineering specification</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="status-grid" aria-label="Program status">
+      <article><span>Configuration</span><strong>1.40 m / 4.50 kg max</strong></article>
+      <article><span>Initial envelope</span><strong>Manual, FBWA, RTL</strong></article>
+      <article><span>Verification</span><strong>12 requirements open</strong></article>
+      <article class="hold"><span>Disposition</span><strong>Hold for qualified review</strong></article>
+    </section>
+
+    <section class="content-section">
+      <div>
+        <p class="eyebrow">Release basis</p>
+        <h2>Approval is evidence, not appearance.</h2>
+      </div>
+      <p>The current analysis is a transparent preliminary screen. Flight release requires measured mass properties, aerodynamic model correlation, structural proof testing, ground-vibration and flutter clearance, instrumented propulsion testing, SITL/HITL fault injection, and independent signatures.</p>
+    </section>
+
+    <section class="cards">
+      <article><b>01</b><h3>Structure</h3><p>Two continuous carbon spars, closed torsion box, proof-load instrumentation and coupon allowables.</p></article>
+      <article><b>02</b><h3>Control</h3><p>Defined elevons, actuator margins, command limits and progressive manual-to-stabilized test cards.</p></article>
+      <article><b>03</b><h3>Energy</h3><p>Two isolated propulsion branches with independent fusing, containment, venting and logged thermal tests.</p></article>
+      <article><b>04</b><h3>Verification</h3><p>Traceable requirements, Monte Carlo campaigns, failure injection and configuration hashes.</p></article>
+    </section>
+
+    <section class="evidence">
+      <p class="eyebrow">Evidence index</p>
+      <h2>Reviewer downloads</h2>
+      <div class="download-list">
+        <a href="flight-control.html"><span>Flight-Control Approval Data Pack</span><small>Web document / candidate v0.4</small></a>
+        <a href="engineering-spec.html"><span>Engineering Specification</span><small>Web document / preliminary v0.3</small></a>
+        <a href="docs/flight_control_verification_matrix_v0.4.csv"><span>Verification Matrix</span><small>CSV / 12 open requirements</small></a>
+        <a href="source/ENGINEERING_SPEC_v0.3.md"><span>Machine-readable specification</span><small>Markdown source</small></a>
+        <a href="source/results/v0.3/engineering_screen.json"><span>Engineering screen</span><small>JSON calculations</small></a>
+      </div>
+    </section>
+
+    <section class="notice">
+      <div class="pulse"></div>
+      <div><h2>Not a flight authorization</h2><p>No document or calculation on this site grants airworthiness, regulatory permission, fabrication release, or approval to fly. All approval fields remain open until signed by qualified reviewers using measured test evidence.</p></div>
+    </section>
+  </main>
+
+  <footer><span>X-91 Engineering Review Portal</span><span>Civilian research configuration</span></footer>
+</body>
+</html>

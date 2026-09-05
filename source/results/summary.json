@@ -1,0 +1,12 @@
+{
+  "weight_n": 39.2266,
+  "wing_loading_n_m2": 70.04749999999999,
+  "stall_speed_m_s": 11.14934514094313,
+  "recommended_approach_speed_m_s": 14.494148683226069,
+  "induced_drag_factor": 0.12631344689832963,
+  "static_margin_fraction_mac": 0.07,
+  "thrust_to_weight_usable": 1.121687834275721,
+  "estimated_endurance_min": 7.051764705882352,
+  "best_range_speed_m_s": 15.028505548985763,
+  "best_endurance_speed_m_s": 12.821746912084597
+}

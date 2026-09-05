@@ -1,0 +1,81 @@
+{
+  "project": "BLACK MANTA X-91 Civilian Flight Demonstrator",
+  "version": "0.4-approval-candidate",
+  "geometry": {
+    "span_m": 1.4,
+    "length_m": 0.82,
+    "wing_area_m2": 0.56,
+    "mean_aerodynamic_chord_m": 0.44,
+    "aspect_ratio": 3.5,
+    "sweep_deg": 34.0,
+    "taper_ratio": 0.42
+  },
+  "mass": {
+    "target_kg": 4.0,
+    "maximum_concept_kg": 4.5
+  },
+  "aerodynamics": {
+    "cl_max": 0.92,
+    "cl_alpha_per_rad": 4.1,
+    "cd0": 0.032,
+    "oswald_efficiency": 0.72,
+    "neutral_point_mac_fraction": 0.31,
+    "cg_mac_fraction": 0.24
+  },
+  "propulsion": {
+    "edf_count": 2,
+    "edf_diameter_mm": 70,
+    "edf_model": "JP Hobby JPH6007-100 70 mm 12-blade, 2250 Kv, 6S",
+    "esc_model": "Hobbywing Skywalker 100A V2, product 80060441",
+    "battery_model": "Spektrum SPMX46S50 6S 4000 mAh 50C Smart G2",
+    "battery_count": 2,
+    "maximum_total_static_thrust_n": 46.1,
+    "usable_total_static_thrust_n": 41.5,
+    "battery_nominal_voltage_v": 22.2,
+    "battery_capacity_ah": 8.0,
+    "estimated_cruise_power_w": 1100.0,
+    "usable_energy_fraction": 0.75
+  },
+  "structure": {
+    "main_spar": "20 x 17 mm roll-wrapped carbon tube, continuous tip-to-tip",
+    "rear_spar": "20 x 17 mm roll-wrapped carbon tube, continuous tip-to-tip",
+    "assumed_spar_modulus_gpa": 55.0,
+    "spar_design_allowable_mpa": 250.0,
+    "skin": "0.40 mm quasi-isotropic carbon faces / 5 mm 65 kg/m3 SAN foam core",
+    "adhesive": "3M Scotch-Weld DP190 Gray, 0.20-0.30 mm controlled bondline"
+  },
+  "controls": {
+    "servo_model": "KST X10 V8.0",
+    "elevon_span_fraction_semispan": [0.35, 0.90],
+    "elevon_chord_fraction_local": 0.22,
+    "pitch_travel_deg": 18,
+    "roll_travel_deg": 22,
+    "mechanical_stop_deg": 25,
+    "reflex_deg": 2.0
+  },
+  "flight_control": {
+    "hardware": "Holybro Pixhawk 6X",
+    "software": "ArduPlane - exact stable release and git hash to be frozen by reviewer",
+    "initial_approved_modes": ["MANUAL", "FBWA", "RTL"],
+    "auto_mission_enabled_initially": false,
+    "independent_rc_override": true,
+    "dual_power_inputs_required": true,
+    "airspeed_sensor_required": true,
+    "external_gps_compass_required": true,
+    "parameter_file_status": "BLOCKED pending measured mass properties and flight-control identification"
+  },
+  "environment": {
+    "air_density_kg_m3": 1.225,
+    "gravity_m_s2": 9.80665
+  },
+  "safety": {
+    "maximum_bank_deg_autonomous": 30,
+    "minimum_commanded_altitude_m_agl": 35,
+    "maximum_test_radius_m": 400,
+    "lost_link_action": "RETURN_TO_HOME_THEN_LAND",
+    "manual_override_required": true,
+    "payload_release_interfaces": false,
+    "targeting_functions": false,
+    "person_tracking": false
+  }
+}

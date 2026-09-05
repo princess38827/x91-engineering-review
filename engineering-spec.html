@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>X-91 Engineering Specification</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">X-91 Engineering Specification</h1>
+</header>
+<h1
+id="x-91-civilian-demonstrator---preliminary-engineering-specification-v03">X-91
+civilian demonstrator - preliminary engineering specification v0.3</h1>
+<p>Status: <strong>HOLD FOR INDEPENDENT REVIEW.</strong> This is a
+traceable design recommendation, not a fabrication release,
+airworthiness finding, or substitute for a qualified aeronautical
+engineer. The aircraft remains non-weaponized and has no
+payload-release, targeting, or person-tracking capability.</p>
+<h2 id="frozen-design-intent">Frozen design intent</h2>
+<ul>
+<li>1.40 m one-piece flying wing, 0.56 m2 area, 4.0 kg target and 4.5 kg
+absolute design mass.</li>
+<li>Envelope: +3.5/-1.5 g limit, 1.5 ultimate factor, 45 m/s design-dive
+speed pending flutter clearance.</li>
+<li>Two isolated 6S EDF branches; independent receiver/servo power;
+manual override and geofence.</li>
+<li>First flights are manual, line-of-sight, speed-limited expansion
+only after proof, propulsion, ground-vibration and glide gates
+pass.</li>
+</ul>
+<h2 id="structure-and-materials">Structure and materials</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Selected baseline</th>
+<th>Design input / acceptance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Main and rear spars</td>
+<td>Two continuous Easy Composites CFT-RWM-20-17 tubes, 20 mm OD x 17 mm
+ID, tip-to-tip</td>
+<td>Use E = 55 GPa and 250 MPa design allowable only provisionally.
+Supplier gives geometry, 139 g/m, 0/90 layup and 80 C service limit but
+no strength/modulus. Test three coupons from the actual batch.</td>
+</tr>
+<tr class="even">
+<td>Wing skins</td>
+<td>0.40 mm quasi-isotropic carbon/epoxy each face, nominal
+[0/+45/-45/0], over 5 mm Gurit Corecell I60 SAN foam</td>
+<td>Core nominal density 65 kg/m3. Faces and core require batch records
+and coupons. The closed D-box from leading edge to rear spar carries
+torsion.</td>
+</tr>
+<tr class="odd">
+<td>Spar/skin joints</td>
+<td>3M DP190 Gray, 0.20-0.30 mm controlled bondline; 40 mm minimum
+wrap/saddle at ribs and hard points</td>
+<td>Use 5 MPa provisional design shear, never vendor typical strength as
+an allowable. Prepare, cure and witness-coupon with each bonding
+session.</td>
+</tr>
+<tr class="even">
+<td>Center joint</td>
+<td>None in primary wing box</td>
+<td>One-piece spars and skins. Equipment hatches must not sever D-box
+fibres.</td>
+</tr>
+<tr class="odd">
+<td>Hard points</td>
+<td>2 mm G10 load spreaders bonded both faces at EDF, battery tray,
+launch and landing contacts</td>
+<td>No point fastener through an unreinforced sandwich panel. Pot all
+penetrations.</td>
+</tr>
+</tbody>
+</table>
+<p>At +5.25 g ultimate, the screen predicts 231.7 N total lift and 34.1
+N m root moment per side. If the spars share that moment equally,
+nominal tube stress is 45.4 MPa versus the provisional 250 MPa allowable
+(5.5 ratio before joints, holes, defects, sweep and local buckling). The
+calculated first half-wing bending mode is 25.3 Hz using assumed E and
+mass placement. Neither value closes structural or flutter requirements
+until correlated to test.</p>
+<h2 id="stiffness-and-mass-control">Stiffness and mass control</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Station from centerline</th>
+<th>Item</th>
+<th style="text-align: right;">Maximum mass each side</th>
+<th style="text-align: right;">CG tolerance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.00-0.16 m</td>
+<td>One 6S battery, tray and restraint</td>
+<td style="text-align: right;">0.72 kg</td>
+<td style="text-align: right;">+/-5 mm spanwise</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.25-0.35 m</td>
+<td>EDF, motor, ESC, mount and duct</td>
+<td style="text-align: right;">0.43 kg</td>
+<td style="text-align: right;">+/-3 mm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.25-0.63 m</td>
+<td>Elevon, hinges, horn and servo</td>
+<td style="text-align: right;">0.09 kg</td>
+<td style="text-align: right;">+/-2 mm chordwise</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">distributed</td>
+<td>Half wing structure/wiring/finish</td>
+<td style="text-align: right;">0.72 kg</td>
+<td style="text-align: right;">balance left/right within 10 g</td>
+</tr>
+</tbody>
+</table>
+<p>Acceptance targets: first bending &gt;=22 Hz, first torsion &gt;=35
+Hz, corresponding left/right modes within 5%, and elevon trailing-edge
+free play at four locations &lt;=0.25 mm. Control-surface balance
+changes require aeroelastic review. These gates do not by themselves
+prove a 45 m/s flutter boundary.</p>
+<h2 id="elevons-and-actuators">Elevons and actuators</h2>
+<ul>
+<li>Each elevon spans 35-90% semispan (0.385 m), with 22% local chord
+(about 68 mm average), sealed gap, three hinges, and horn near 70%
+span.</li>
+<li>KST X10 V8.0 at regulated 7.4 V: vendor rating 9.5 kgf cm and 0.12
+s/60 deg; mechanical range +/-50 deg. Use a rigid 2 mm pushrod, ball
+links and no flexible Z-bend.</li>
+<li>Command limits: pitch +/-18 deg; differential roll +/-22 deg;
+combined command clipped to +/-22 deg; physical stop +/-25 deg; initial
+reflex 2 deg subject to glide trim.</li>
+<li>At 45 m/s, assumed hinge coefficient 0.05 predicts 0.111 N m. After
+70% linkage efficiency the vendor torque gives a 5.87 ratio. Verify by
+load cell at minimum bus voltage and worst linkage angle; require
+&gt;=2.0 torque margin without continuous stall-torque operation.</li>
+</ul>
+<h2 id="propulsion-and-battery-branches">Propulsion and battery
+branches</h2>
+<p>Each branch is: Spektrum SPMX46S50 6S 4000 mAh 50C Smart G2 battery
+-&gt; accessible arming connector -&gt; Littelfuse 0498100.M 100 A MIDI
+fuse in covered holder -&gt; Hobbywing Skywalker 100A V2 ESC -&gt; JP
+Hobby JPH6007-100 70 mm 12-blade EDF with 2250 Kv motor.</p>
+<p>Manufacturer/retailer datum for each EDF at 22.2 V is 76.6 A, 1,725 W
+and 2.35 kg static thrust. The ESC is rated 100 A continuous/120 A peak
+on 3-6S, giving 1.31 current-rating headroom before thermal derating.
+The pack is 144 x 42 x 43 mm, 615 g, 10 AWG, soft-case, and vendor-rated
+50C. Full-throttle duration at 75% usable energy is only 2.32 minutes;
+flight timing must use logged consumption.</p>
+<p>Battery tray: 1.0 mm 6061-T6 bottom pan over a 3 mm
+silicone/fiberglass thermal pad, 2 mm G10 sidewalls, two independent 20
+mm aramid straps per pack crossing structural frames, positive fore/aft
+stops, and 6 mm clearance around the pouch. Each compartment vents
+through a minimum 1,200 mm2 downward/aft outlet separated from EDF
+intake and avionics; it cannot be a sealed pressure vessel. Install fuse
+within 100 mm conductor length of the positive terminal. Final wire
+gauge, fuse curve and connector temperature require branch bench test;
+the fuse protects wiring against faults, not cells against every
+failure.</p>
+<h2 id="analysis-status">Analysis status</h2>
+<ul>
+<li>Rigid-body 6-DOF: the included state-space screen has stable assumed
+longitudinal and lateral modes after a 3 degree control doublet. Its
+derivatives are placeholders. Replace them with AVL/CFD/wind-tunnel
+derivatives and measured mass properties before control-law tuning.</li>
+<li>Modal/flutter: the included Euler-Bernoulli model estimates bending
+only. Conduct free-free ground-vibration testing with accelerometers and
+impact/shaker excitation; update an FEM to match frequencies within 5%
+and mode shapes by MAC &gt;=0.90. A qualified aeroelastic analyst must
+demonstrate flutter speed &gt;=1.20 times the approved maximum test
+speed. No flight excitation precedes that finding.</li>
+</ul>
+<h2 id="proof-load-test">Proof-load test</h2>
+<ol type="1">
+<li>Use a production-representative static article in a guarded fixture.
+Support actual inertial-load paths; apply elliptical upward load using
+at least eight calibrated points per half-wing and include battery/EDF
+inertial loads.</li>
+<li>Instrument both spar roots with strain gauges and both tips with
+displacement transducers. Record load, strain and deflection at &gt;=50
+Hz. Photograph bonds before and after.</li>
+<li>Load 0, 25, 50, 75 and 100% of +3.5 g limit, holding each 60 s.
+Unload and require residual tip deflection &lt;=1.0 mm, no audible
+event, crack, delamination, fastener motion or nonlinear strain.</li>
+<li>Proof to 125% limit (+4.375 g, 193.1 N total aerodynamic load) for
+60 s. Apply negative case separately to -1.875 g proof. Pass only with
+strain repeatability within 5% and no permanent set/damage.</li>
+<li>On a sacrificial qualification article only, load to +5.25 g
+ultimate (231.7 N) for 3 s. Correlate the model and
+ultrasonically/tap-test critical bonds.</li>
+</ol>
+<h2 id="instrumented-propulsion-test">Instrumented propulsion test</h2>
+<p>Use a bolted thrust stand behind a barrier, sterile inlet area,
+remote arming, fire-resistant battery station and emergency-cutoff
+observer. Measure per branch: thrust, optical RPM, voltage, current,
+watt-hours, battery/ESC/motor temperatures, vibration and ambient
+temperature at &gt;=10 Hz (vibration &gt;=2 kHz).</p>
+<p>Run each branch alone, then both: 10 s at 25%, 10 s at 50%, 20 s at
+75%, 10 s at 100%; cool and inspect; then 60 s at expected climb and 180
+s at expected cruise. Abort on pack swelling, smoke/odor, abnormal
+vibration, witness-mark movement, current &gt;90 A, any cell &lt;3.45 V
+under load, battery &gt;55 C, ESC &gt;85 C, motor case &gt;90 C, or
+thrust mismatch &gt;10%. Acceptance requires no abort, no resonance
+trend, thrust/current repeatability within 5%, and connectors/fuse
+holders &lt;60 C. Derive the operational throttle cap from this
+test.</p>
+<h2 id="independent-review-release-gates">Independent review release
+gates</h2>
+<p>The reviewer signs separate structural loads, material/coupon,
+modal/flutter, stability/control, battery/electrical and propulsion-test
+findings. Fabrication remains on hold until drawings, travelers, actual
+mass properties, test data and nonconformances enter a controlled
+revision.</p>
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li>Easy Composites tube: <a
+href="https://www.easycomposites.co.uk/20mm-roll-wrapped-carbon-fibre-tube-metric">https://www.easycomposites.co.uk/20mm-roll-wrapped-carbon-fibre-tube-metric</a></li>
+<li>Gurit Corecell I: <a
+href="https://www.gurit.com/corecell-i/">https://www.gurit.com/corecell-i/</a></li>
+<li>3M DP190: <a
+href="https://multimedia.3m.com/mws/media/1235570O/dp190-scotch-weld-technical-data-sheet.pdf">https://multimedia.3m.com/mws/media/1235570O/dp190-scotch-weld-technical-data-sheet.pdf</a></li>
+<li>Spektrum battery: <a
+href="https://www.spektrumrc.com/product/spektrum-accessories-22.2v-4000mah-6s-50c-smart-g2-lipo-battery-ic5/SPMX46S50.html">https://www.spektrumrc.com/product/spektrum-accessories-22.2v-4000mah-6s-50c-smart-g2-lipo-battery-ic5/SPMX46S50.html</a></li>
+<li>Littelfuse fuse: <a
+href="https://www.littelfuse.com/assetdocs/midi-32v-bolt-down-series-data-sheet?assetguid=b55e8034-180d-40f6-a0a7-bebc2d4a94f5">https://www.littelfuse.com/assetdocs/midi-32v-bolt-down-series-data-sheet?assetguid=b55e8034-180d-40f6-a0a7-bebc2d4a94f5</a></li>
+<li>Hobbywing ESC: <a
+href="https://www.hobbywing.com/en/products/skywalker-v2-series274">https://www.hobbywing.com/en/products/skywalker-v2-series274</a></li>
+<li>JP Hobby EDF: <a
+href="https://motionrc.com/products/jp-hobby-70mm-12-blade-edf-4s-6s-power-system-w-2250kv-motor-jph6007-100">https://motionrc.com/products/jp-hobby-70mm-12-blade-edf-4s-6s-power-system-w-2250kv-motor-jph6007-100</a></li>
+<li>KST servo: <a
+href="https://kstservos.com/products/x10-10-8kg-torque-servo-micro-digital-metal-gear-glider-servo-motor">https://kstservos.com/products/x10-10-8kg-torque-servo-micro-digital-metal-gear-glider-servo-motor</a></li>
+<li>NASA GVT overview: <a
+href="https://ntrs.nasa.gov/api/citations/19870018222/downloads/19870018222.pdf">https://ntrs.nasa.gov/api/citations/19870018222/downloads/19870018222.pdf</a></li>
+</ul>
+</body>
+</html>

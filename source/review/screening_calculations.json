@@ -1,0 +1,9 @@
+{
+  "maximum_mass_kg": 4.5,
+  "positive_limit_load_g": 3.5,
+  "ultimate_factor": 1.5,
+  "positive_ultimate_load_g": 5.25,
+  "ultimate_total_lift_n": 231.68210625,
+  "preliminary_root_bending_moment_each_side_nm": 34.05726961875,
+  "battery_nominal_energy_wh": 133.2
+}

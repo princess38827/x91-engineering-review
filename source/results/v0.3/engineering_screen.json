@@ -1,0 +1,87 @@
+{
+  "status": "PRELIMINARY - NOT RELEASED FOR FABRICATION OR FLIGHT",
+  "loads": {
+    "limit_load_g": 3.5,
+    "proof_load_g": 4.375,
+    "ultimate_load_g": 5.25,
+    "ultimate_total_lift_n": 231.68210625,
+    "ultimate_root_moment_each_half_nm": 34.05726961875
+  },
+  "structure": {
+    "tube_od_mm": 20,
+    "tube_id_mm": 17,
+    "spar_count": 2,
+    "assumed_modulus_gpa": 55.0,
+    "tube_I_m4": 3.75415413365459e-09,
+    "combined_EI_nm2": 412.95695470200485,
+    "ultimate_nominal_spar_stress_mpa": 45.359445039082566,
+    "design_allowable_mpa": 250.0,
+    "nominal_stress_margin_ratio": 5.51153127611229,
+    "first_three_bending_modes_hz": [
+      25.284475906501704,
+      119.24411962445025,
+      318.8277382363464
+    ]
+  },
+  "controls": {
+    "elevon_span_each_m": 0.385,
+    "elevon_chord_m": 0.0682,
+    "elevon_area_each_m2": 0.026257,
+    "design_dive_speed_m_s": 45.0,
+    "provisional_hinge_coefficient": 0.05,
+    "hinge_moment_nm": 0.11105307891562499,
+    "servo_torque_at_7_4v_nm": 0.93163175,
+    "torque_margin_after_linkage_efficiency": 5.872347091749517
+  },
+  "propulsion": {
+    "manufacturer_current_each_a": 76.6,
+    "manufacturer_thrust_each_n": 23.0456275,
+    "manufacturer_input_power_each_w": 1725,
+    "esc_continuous_rating_each_a": 100,
+    "esc_current_headroom_ratio": 1.3054830287206267,
+    "battery_count": 2,
+    "battery_mass_total_kg": 1.23,
+    "battery_energy_total_wh": 177.6,
+    "nominal_full_power_duration_min_at_75pct_usable": 2.316521739130435
+  },
+  "six_dof": {
+    "longitudinal_eigenvalues": [
+      {
+        "real": -2.461724668248001,
+        "imag": 5.54384705014882
+      },
+      {
+        "real": -2.461724668248001,
+        "imag": -5.54384705014882
+      },
+      {
+        "real": -0.19827533175199913,
+        "imag": 0.5272203846574223
+      },
+      {
+        "real": -0.19827533175199913,
+        "imag": -0.5272203846574223
+      }
+    ],
+    "lateral_eigenvalues": [
+      {
+        "real": -4.337228478385549,
+        "imag": 0.0
+      },
+      {
+        "real": -0.8518969793587856,
+        "imag": 2.7902140058815688
+      },
+      {
+        "real": -0.8518969793587856,
+        "imag": -2.7902140058815688
+      },
+      {
+        "real": -0.00897756289688989,
+        "imag": 0.0
+      }
+    ],
+    "all_modes_stable_in_assumed_model": true,
+    "warning": "Derivative assumptions are not validated; replace using aerodynamic data and measured inertia."
+  }
+}
